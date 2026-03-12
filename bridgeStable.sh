@@ -1173,7 +1173,7 @@ setup_eu_node() {
     { "tag": "vless-xhttp-in", "port": 4433, "protocol": "vless", "settings": { "clients": [ { "id": "$MY_UUID" } ], "decryption": "none" }, "streamSettings": { "network": "xhttp", "security": "reality", "xhttpSettings": { "path": "/$XHTTP_PATH", "mode": "auto" }, "realitySettings": { "show": false, "dest": "$TARGET_SITE:443", "serverNames": ["$TARGET_SITE"], "privateKey": "$PRV_XH", "shortIds": ["$SID_XH"] } } }
   ],
   "outbounds": [ { "tag": "direct", "protocol": "freedom" }, { "tag": "warp", "protocol": "socks", "settings": { "servers": [{ "address": "127.0.0.1", "port": 40000 }] } }, { "tag": "block", "protocol": "blackhole" } ],
-  "routing": { "domainStrategy": "IPIfNonMatch", "rules": [ { "type": "field", "ip": ["geoip:private"], "outboundTag": "block" }, { "type": "field", "protocol": ["bittorrent"], "outboundTag": "block" }, { "type": "field", "domain": ["geosite:google", "geosite:openai", "geosite:netflix", "geosite:disney"], "outboundTag": "warp" } ] }
+  "routing": { "domainStrategy": "IPIfNonMatch", "rules": [ { "type": "field", "ip": ["geoip:private"], "outboundTag": "block" }, { "type": "field", "protocol": ["bittorrent"], "outboundTag": "block" }, { "type": "field", "domain": ["geosite:google", "geosite:openai", "domain:ru", "geosite:category-ru", "geoip:ru"], "outboundTag": "warp" } ] }
 }
 CFG
         /usr/local/bin/xray run -test -config /tmp/xray_eu.json >/dev/null 2>&1 || { echo "VPN_ERROR|Config invalid"; exit 1; }
